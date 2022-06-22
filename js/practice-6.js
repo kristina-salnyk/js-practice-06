@@ -211,4 +211,5 @@ function foo(params) {
 
 foo({ a: 1, b: 2, c: 3, d: 4, e: 5 });
 
+// Разница дат
 console.log((new Date('2022-06-22') - new Date('2022-06-20')) / (1000 * 3600 * 24));
