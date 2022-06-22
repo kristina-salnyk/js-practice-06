@@ -1,7 +1,8 @@
 // Деструктуризация и rest/spread
 
 // Example 1 - Деструктуризация
-// Перепиши функцию так, чтобы она принимала один объект параметров, вместо набора независимых аргументов.
+// Перепиши функцию так, чтобы она принимала один объект параметров,
+// вместо набора независимых аргументов.
 
 // function calcBMI(weight, height) {
 //   const numericWeight = Number(weight.replace(',', '.'));
@@ -42,7 +43,8 @@ console.log(
 );
 
 // Example 2 - Деструктуризация
-// Перепиши функцию так, чтобы она принимала один объект параметров, вместо набора независимых аргументов.
+// Перепиши функцию так, чтобы она принимала один объект параметров, вместо
+// набора независимых аргументов.
 
 // function printContactsInfo(names, phones) {
 //   const nameList = names.split(',');
@@ -76,7 +78,8 @@ printContactsInfo({
 });
 
 // Example 3 - Глубокая деструктуризация
-// Перепиши функцию так, чтобы она принимала один объект параметров, вместо набора независимых аргументов.
+// Перепиши функцию так, чтобы она принимала один объект параметров, вместо
+// набора независимых аргументов.
 
 // function getBotReport(companyName, repairBots, defenceBots) {
 //   return `${companyName} has ${repairBots + defenceBots} bots in stock`;
@@ -101,7 +104,9 @@ console.log(
 ); // "Cyberdyne Systems has 200 bots in stock"
 
 // Example 4 - Деструктуризация
-// Перепиши функцию так, чтобы она принимала объект параметров со свойствами companyName и stock и выводила репорт о количестве товаров на складе любой компании.
+// Перепиши функцию так, чтобы она принимала объект параметров со свойствами
+// companyName и stock и выводила репорт о количестве товаров на складе любой
+// компании.
 
 // Решение
 function getStockReport({ companyName, stock }) {
@@ -167,7 +172,8 @@ function generateId() {
 }
 
 // Example 6 - Операция rest
-// Напиши функцию transformUsername(user) так, чтобы она возвращала новый обьект со свойством fullName, вместо firstName и lastName.
+// Напиши функцию transformUsername(user) так, чтобы она возвращала новый
+// обьект со свойством fullName, вместо firstName и lastName.
 
 // Решение
 function transformUsername({ firstName, lastName, ...otherProps }) {
@@ -204,3 +210,5 @@ function foo(params) {
 }
 
 foo({ a: 1, b: 2, c: 3, d: 4, e: 5 });
+
+console.log((new Date('2022-06-22') - new Date('2022-06-20')) / (1000 * 3600 * 24));
