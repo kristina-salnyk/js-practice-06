@@ -1,4 +1,4 @@
-// Коллбеки. Стрелочные функции. forEach
+// Коллбеки. Стрелочные функции. forEach. Замыкания
 
 // Example 1 - Коллбек функции
 // Напишите следующие функции:
@@ -12,7 +12,7 @@
 
 // Решение
 const createProduct = (obj, callback) => {
-  callback({ id: Date.now(), ...obj });
+  callback({ id: crypto.randomUUID(), ...obj });
 };
 
 const logProduct = product => {
@@ -122,9 +122,13 @@ console.log(
 const createProductNew = (partialProduct, callback) =>
   callback({ id: Date.now(), ...partialProduct });
 
-const logProductNew = product => console.log(product);
+const logProductNew = product => {
+  console.log(product);
+};
 
-const logTotalPriceNew = product => console.log(product.price * product.quantity);
+const logTotalPriceNew = product => {
+  console.log(product.price * product.quantity);
+};
 
 createProductNew({ name: '🍎', price: 30, quantity: 3 }, logProductNew);
 createProductNew({ name: '🍋', price: 20, quantity: 5 }, logTotalPriceNew);
@@ -157,9 +161,13 @@ const accountNew = {
   },
 };
 
-const handleSuccessNew = message => console.log(`✅ Success! ${message}`);
+const handleSuccessNew = message => {
+  console.log(`✅ Success! ${message}`);
+};
 
-const handleErrorNew = message => console.log(`❌ Error! ${message}`);
+const handleErrorNew = message => {
+  console.log(`❌ Error! ${message}`);
+};
 
 account.withdraw(2000, handleSuccessNew, handleErrorNew);
 account.withdraw(600, handleSuccessNew, handleErrorNew);
@@ -211,7 +219,9 @@ const printContactsInfo = ({ names, phones }) => {
     data[index].push(element);
   });
   // for (let i = 0; i < nameList.length; i += 1) {
-  data.forEach(element => console.log(`${element[0]}: ${element[1]}`));
+  data.forEach(element => {
+    console.log(`${element[0]}: ${element[1]}`);
+  });
   // }
 };
 
