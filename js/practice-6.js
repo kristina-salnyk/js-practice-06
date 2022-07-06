@@ -148,7 +148,7 @@ function createContact(partialContact) {
   return {
     list: 'default',
     ...partialContact,
-    id: generateId(),
+    id: this.generateId(),
     createdAt: Date.now(),
   };
 }
@@ -203,6 +203,7 @@ console.log(
   })
 );
 
+// Деструктуризация
 function foo(params) {
   const { a, b, c, ...args } = params;
 
