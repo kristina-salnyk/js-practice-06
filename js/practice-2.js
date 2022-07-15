@@ -157,7 +157,6 @@ for (let i = min; i <= max; i++) {
 // Иначе выводить строку "Неверный пароль"
 
 const login = prompt('Input your login');
-// const password = '';
 if (login === 'Admin') {
   const password = prompt('Input your password');
   if (password === 'I am an admin') console.log('Hello');
