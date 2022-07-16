@@ -161,5 +161,7 @@ if (login === 'Admin') {
   const password = prompt('Input your password');
   if (password === 'I am an admin') console.log('Hello');
   else console.log('Wrong password');
-} else if (login === null) console.log('Canceled');
-else console.log('I do not know you');
+} else {
+  if (login === null) console.log('Canceled');
+  else console.log('I do not know you');
+}
