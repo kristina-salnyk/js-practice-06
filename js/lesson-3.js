@@ -250,7 +250,7 @@ Storage.prototype.removeItem = function (item) {
 
 const storage = new Storage(['apple', 'banana', 'mango']);
 console.log(storage);
-console.log(storage.removeItem('apple'));
+storage.removeItem('apple');
 
 //3. Напиши класс Client котрорый создает объект
 //со свойствами login email
