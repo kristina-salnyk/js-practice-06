@@ -1,4 +1,81 @@
-// import uniqid from 'uniqid';
+import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
+
+//1. Напиши скрипт, который для объекта user,
+//последовательно:
+//1 добавит поле mood со значением 'happy'
+//2 заменит hobby на 'skydiving'
+//3 заменит значение premium на false
+//4 выводит содержимое объекта users в фортмате
+//ключ:значение используя Object.keys() и for...of
+
+const user = {
+  name: 'John',
+  age: 20,
+  hobby: 'tenis',
+  premium: true,
+};
+
+user.mood = 'happy';
+
+user['hobby'] = 'skydiving';
+
+user['premium'] = false;
+
+for (const key of Object.keys(user)) {
+  console.log(`${key}:${user[key]}`);
+}
+
+//=======================
+
+//2. У нас есть объект, в котором храняться зарплаты
+//нашей команды
+//Напишите код для сумирования всех зарплат и
+//сохраните его результат в переменной sum.
+//Если объект salaries пуст, то результат должен быть 0
+
+const salaries = {
+  Mango: 100,
+  Poly: 160,
+  Ajax: 1470,
+};
+
+function calculateSalaries(salaries) {
+  let total = 0;
+  for (const value of Object.values(salaries)) {
+    total += value;
+  }
+  return total;
+}
+
+console.log(calculateSalaries({}));
+
+//=======================
+
+//3. Напишите ф-цию calcTotalPrice(stones, stonesName),
+//которая принимает массив объектов и
+//строку с названием камня.
+//Функция считает м возвращает общую стоимость камней
+//с таким именем, ценой и количеством из объекта
+
+const stones = [
+  { name: 'Изумруд', price: 1300, quantity: 4 },
+  { name: 'Бриллиант', price: 2700, quantity: 6 },
+  { name: 'Сапфир', price: 400, quantity: 7 },
+  { name: 'Щебень', price: 150, quantity: 100 },
+];
+
+const calcTotalPrice = (stones, stonesName) => {
+  for (const stone of stones) {
+    if (stone.name === stonesName) {
+      return stone.price * stone.quantity;
+    }
+  }
+  return ' This stone is not exist';
+};
+
+console.log(calcTotalPrice(stones, 'Щебень'));
+
+//=======================
 
 //4. Создайте объект calculator с тремя методами
 //read(a, b) - принимает два аргумента и сохраняет их
@@ -12,211 +89,64 @@ const calculator = {
     this.b = b;
   },
   sum() {
-    return Object.values(this).reduce(
-      (totalSum, val) => (typeof val === 'number' ? totalSum + val : 0),
-      0
-    );
+    return this.a + this.b;
   },
   mult() {
-    return Object.values(this).reduce(
-      (totalSum, val) => (typeof val === 'number' ? totalSum * val : totalSum),
-      1
-    );
+    return this.a * this.b;
   },
 };
-
-calculator.read(2, 10);
-console.log(calculator);
+calculator.read(2, 6);
 console.log(calculator.sum());
 console.log(calculator.mult());
+
+//=======================
 
 //5. Напишите функцию updateObject, которая принимает объект и возвращает
 //новый объект без указанного параметра
 //Ожидаемый результат ({a: 1. b: 2}, 'b') => {a: 1}
 
-const updateObject = (obj, param) => {
-  const parameters = Object.keys(obj);
-  parameters.splice(parameters.indexOf(param), 1);
-
-  const newObj = {};
-  parameters.forEach(element => {
-    newObj[element] = obj[element];
-  });
-
+const updateObject = (obj, key) => {
+  const newObj = { ...obj };
+  delete newObj[key];
   return newObj;
 };
 
 console.log(updateObject({ a: 1, b: 2 }, 'b'));
 
-//5.1 Напишите функцию updateObject, которая принимает объект и возвращает
-//новый объект без указанных параметров
-//Ожидаемый результат ({a: 1, b: 2, c: 3}, 'b', 'a') => {c: 3}
-
-// Task 1
-const myUser = {
-  name: 'Peter',
-  surname: 'Parker',
-  age: 22,
-  position: 'spider-man',
-};
-
-const userFunction = user => {
-  return Object.keys(user).reduce((acc, key, index, array) => {
-    return (
-      acc +
-      `${key[0].toUpperCase() + key.slice(1, key.length).toLowerCase()}: ${
-        user[key].toString()[0].toUpperCase() +
-        user[key].toString().slice(1, user[key].toString().length).toLowerCase()
-      } ${index === array.length - 1 ? '' : ', '}`
-    );
-  }, ``);
-};
-
-console.log(userFunction(myUser));
-
-//1. Напиши скрипт, который для объекта user,
-//последовательно:
-//1 добавит поле mood со значением 'happy'
-//2 заменит hobby на 'skydiving'
-//3 заменит значение premium на false
-//4 выводит содержимое объекта users в фортмате
-//ключ:значение используя Object.keys() и for...of
-
-// const user = {
-//   name: "John",
-//   age: 20,
-//   hobby: "tenis",
-//   premium: true,
-// };
-
-// user.mood = 'happy';
-
-// user['hobby'] = 'skydiving';
-
-// user['premium'] = false;
-
-// for ( const key of Object.keys(user) ) {
-//   console.log(`${key}:${user[key]}`);
-// }
-
-//=======================
-
-//2. У нас есть объект, в котором храняться зарплаты
-//нашей команды
-//Напишите код для сумирования всех зарплат и
-//сохраните его результат в переменной sum.
-//Если объект salaries пуст, то результат должен быть 0
-
-// const salaries = {
-//   Mango: 100,
-//   Poly: 160,
-//   Ajax: 1470,
-// };
-// function calculateSalaries (salaries){
-//   let total = 0;
-//   for( const value of Object.values(salaries)){
-//     total += value;
-//   }
-//   return total
-// }
-
-// console.log(calculateSalaries({}))
-//=======================
-
-//3. Напишите ф-цию calcTotalPrice(stones, stonesName),
-//которая принимает массив объектов и
-//строку с названием камня.
-//Функция считает м возвращает общую стоимость камней
-//с таким именем, ценой и количеством из объекта
-
-// const stones = [
-//   { name: "Изумруд", price: 1300, quantity: 4 },
-//   { name: "Бриллиант", price: 2700, quantity: 6 },
-//   { name: "Сапфир", price: 400, quantity: 7 },
-//   { name: "Щебень", price: 150, quantity: 100 },
-// ];
-
-// const calcTotalPrice = (stones, stonesName) => {
-
-//   for (const stone of stones){
-
-//     if (stone.name === stonesName){
-//  return stone.price * stone.quantity
-//     }
-//   } return " This stone is not exist"
-// }
-
-// console.log(calcTotalPrice(stones, 'Щебень'));
-
-//=======================
-
-//4. Создайте объект calculator с тремя методами
-//read(a, b) - принимает два аргумента и сохраняет их
-//как свойства объекта
-//sum() возвращает сумму сохраненных значений
-//mult() перемножает сохраненные значения и возвращает результат
-
-// const calculator = {
-//   read(a, b) {
-//     this.a = a;
-//     this.b = b;
-//   },
-//   sum() {
-//     return this.a + this.b
-//   },
-//   mult() {
-//    return this.a * this.b
-//   },
-// };
-// calculator.read(2, 6);
-// console.log(calculator.sum());
-// console.log(calculator.mult());
-
-//=======================
-
-//5. Напишите функцию updateObject, которая принимает объект и возвращает
-//новый объект без указанного параметра
-//Ожидаемый результат ({a: 1. b: 2}, 'b') => {a: 1}
-
-// const updateObject = (obj, key) =>{
-//   const newObj = {...obj};
-//   delete newObj[key];
-//   return newObj;
-// }
-
-// console.log(updateObject({a: 1, b: 2}, 'b'));
 //=======================
 
 //5.1 Напишите функцию updateObject, которая принимает объект и возвращает
 //новый объект без указанных параметров
 //Ожидаемый результат ({a: 1, b: 2, c: 3}, 'b', 'a') => {c: 3}
 
-// const updateObject1 = (obj, ...keys) =>{
-//   const newObj = {...obj};
-//   keys.forEach(key => delete newObj[key]);
+const updateObject1 = (obj, ...keys) => {
+  const newObj = { ...obj };
+  keys.forEach(key => delete newObj[key]);
 
-//   return newObj;
-// }
-// console.log(updateObject1({a: 1, b: 2, c: 3}, 'b', 'a'));
+  return newObj;
+};
+console.log(updateObject1({ a: 1, b: 2, c: 3 }, 'b', 'a'));
 
 //=======================
 
 //6. Напишите функцию, которая принимает как параметр объект
 //и формирует объекты в новом массиве в формате [key, value]
 
-// const user6 = {
-//   name: "John",
-//   surName: "Stones",
-//   age: 20,
-//   hobby: "tenis",
-//   haveCar: true,
-//   merried: false,
-// };
-// const updateUser6 = (user) => {
-//  const newArray = Object.entries(user)
-//  console.log(newArray)
-// }
-// updateUser6(user6)
+const user6 = {
+  name: 'John',
+  surName: 'Stones',
+  age: 20,
+  hobby: 'tenis',
+  haveCar: true,
+  merried: false,
+};
+
+const updateUser6 = user => {
+  const newArray = Object.entries(user);
+  console.log(newArray);
+};
+
+updateUser6(user6);
 //=======================
 
 //7. Напиши скрипт управления личным кабинетом интернет банка
@@ -246,7 +176,7 @@ const account = {
     return {
       type,
       amount,
-      // id: uniqid(),
+      id: nanoid(),
     };
   },
 
@@ -303,7 +233,7 @@ console.log(account.getBalance());
 console.log(account.getAllTransactions());
 console.log(account.getTransactionDetails(1));
 console.log(account.getTransactionType(Transaction.DEPOSIT));
-// console.log(account.getBalance())
+console.log(account.getBalance());
 
 const users = [
   {
@@ -395,12 +325,20 @@ const users = [
 // Task 1
 
 // Получить массив имен всех пользователей (поле name).
-// console.log(getUserNames(usersData))
-// [ 'Moore Hensley', 'Sharlene Bush', 'Ross Vazquez', 'Elma Head', 'Carey Barr', 'Blackburn Dotson', 'Sheree Anthony' ]
+// console.log(getUserNames(usersData))[
+//   ('Moore Hensley',
+//   'Sharlene Bush',
+//   'Ross Vazquez',
+//   'Elma Head',
+//   'Carey Barr',
+//   'Blackburn Dotson',
+//   'Sheree Anthony')
+// ];
 
 const getUsersNames = users => users.map(user => user.name);
 
-// console.log(getUsersNames(users));
+console.log(getUsersNames(users));
+
 // Task 2
 
 // Получить массив объектов пользователей по цвету глаз (поле eyeColor).
@@ -409,7 +347,7 @@ const getUsersNames = users => users.map(user => user.name);
 const getUsersWithEyeColor = (users, eyeColor) =>
   users.filter(user => user.eyeColor.toLowerCase() === eyeColor.toLowerCase());
 
-// console.log(getUsersWithEyeColor(users, 'Blue'));
+console.log(getUsersWithEyeColor(users, 'Blue'));
 
 // Task 3
 
@@ -426,11 +364,20 @@ console.log(getUsersNames(users, 'male'));
 // Получить массив только неактивных пользователей (поле isActive).
 // console.log(getInactiveUsers(users)); // [объект Moore Hensley, объект Ross Vazquez, объект Blackburn Dotson]
 
+const getInactiveUsers = users => users.filter(user => !user.isActive);
+
+console.log(getInactiveUsers(users));
+
 // Task 5
 
 // Получить пользователя (не массив) по email (поле email, он уникальный).
 // console.log(getUserWithEmail(users, 'shereeanthony@kog.com')); // {объект пользователя Sheree Anthony}
 // console.log(getUserWithEmail(users, 'elmahead@omatom.com')); // {объект пользователя Elma Head}
+
+const getUserWithEmail = (users, email) => users.find(user => user.email === email);
+
+console.log(getUserWithEmail(users, 'shereeanthony@kog.com'));
+console.log(getUserWithEmail(users, 'elmahead@omatom.com'));
 
 // Task 6
 
@@ -440,6 +387,12 @@ console.log(getUsersNames(users, 'male'));
 // [объект Ross Vazquez, объект Elma Head, объект Carey Barr]
 // console.log( getUsersWithAge( users, 30, 40 ) );
 // [объект Moore Hensley, объект Sharlene Bush, объект Blackburn Dotson, объект Sheree Anthony]
+
+const getUsersWithAge = (users, min, max) =>
+  users.filter(user => user.age <= max && user.age >= min);
+
+console.log(getUsersWithAge(users, 20, 30));
+console.log(getUsersWithAge(users, 30, 40));
 
 // Task 7
 
