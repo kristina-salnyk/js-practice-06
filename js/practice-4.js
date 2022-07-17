@@ -77,6 +77,12 @@ printContactsInfo(
 // Напиши функцию findLargestNumber(numbers)которая ищет самое большое число в массиве.
 
 function findLargestNumber(numbers) {
+  if (!Array.isArray(numbers)) {
+    return 'Invalid input';
+  }
+  if (numbers.length === 0) {
+    return 0;
+  }
   return Math.max(...numbers);
 }
 
@@ -88,6 +94,9 @@ console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
 // их среднее значение.Все аругменты будут только числами.
 
 function calAverage(...args) {
+  if (arguments.length === 0) {
+    return 0;
+  }
   return args.reduce((total, value) => total + value, 0) / args.length;
 }
 
@@ -139,7 +148,8 @@ function removeCourse(name) {
 }
 
 function updateCourse(oldName, newName) {
-  courses[courses.indexOf(oldName)] = newName;
+  if (courses.includes(oldName)) courses[courses.indexOf(oldName)] = newName;
+  else console.log('Course not found');
 }
 
 addCourse('Express');
