@@ -1,4 +1,4 @@
-// import uniqid from 'uniqid';
+import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js';
 
 //1. Напишите две функции
 // letMeSeeYourName(callback) - спрашивает имя пользователя
@@ -29,13 +29,13 @@ const greet = name => `Hello, ${name}`;
 //++++++++++++++++++++++++++++++++++++++++++
 
 const makeProduct = (name, price, callback) => {
-  const obj = { name, price, id: Date.now };
+  const obj = { name, price, id: nanoid() };
   callback(obj);
 };
 
 const showProduct = product => console.log(product);
 
-console.table(makeProduct('Fish', 350, showProduct));
+makeProduct('Fish', 350, showProduct);
 
 //====================================================
 //3. Выполни рефакторинг makeDish так, чтобы не нужно было
