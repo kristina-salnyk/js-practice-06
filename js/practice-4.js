@@ -35,46 +35,69 @@ console.log(min(1, 1)); // 1
 
 function getRectArea(dimensions) {
   const dimensionsArr = dimensions.split(' ');
-  return Number(dimensionsArr[0] * dimensionsArr[1]);
+  return Number(dimensionsArr[0]) * Number(dimensionsArr[1]);
 }
 
 console.log(getRectArea('8 11'));
 
 // Example 4 - Логирование элементов
-// Напиши функцию logItems(items), которая получает массив и использует цикл for, который для каждого элемента массива будет выводить в консоль сообщение в формате <номер элемента> - <значение элемента>. Нумерация элементов должна начинаться с 1.
+// Напиши функцию logItems(items), которая получает массив и использует цикл for, который
+// для каждого элемента массива будет выводить в консоль сообщение в формате < номер
+// элемента > - <значение элемента >.Нумерация элементов должна начинаться с 1.
 
-// Например для первого элемента массива ['Mango', 'Poly', 'Ajax'] с индексом 0 будет выведено 1 - Mango, а для индекса 2 выведет 3 - Ajax.
+// Например для первого элемента массива ['Mango', 'Poly', 'Ajax'] с индексом 0 будет
+// выведено 1 - Mango, а для индекса 2 выведет 3 - Ajax.
 
-// function logItems(items) {}
+function logItems(items) {
+  items.forEach((element, index) => console.log(`${index + 1} - ${element}`));
+}
 
-// logItems(['Mango', 'Poly', 'Ajax']);
-// logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+logItems(['Mango', 'Poly', 'Ajax']);
+logItems(['🍎', '🍇', '🍑', '🍌', '🍋']);
+
 // Example 5 - Логирование контактов
-// Напиши функцию printContactsInfo(names, phones) которая выводит в консоль имя и телефонный номер пользователя. В параметры names и phones будут переданы строки имен и телефонных номеров, разделенные запятыми. Порядковый номер имен и телефонов в строках указывают на соответствие. Количество имен и телефонов гарантированно одинаковое.
+// Напиши функцию printContactsInfo(names, phones) которая выводит в консоль имя и телефонный
+// номер пользователя.В параметры names и phones будут переданы строки имен и телефонных номеров,
+// разделенные запятыми.Порядковый номер имен и телефонов в строках указывают на соответствие.
+// Количество имен и телефонов гарантированно одинаковое.
 
-// function printContactsInfo(names, phones) {}
+function printContactsInfo(names, phones) {
+  const namesArr = names.split(',');
+  const phonesArr = phones.split(',');
 
-// printContactsInfo(
-//   'Jacob,William,Solomon,Artemis',
-//   '89001234567,89001112233,890055566377,890055566300',
-// );
+  namesArr.forEach((name, index) => console.log(`name: ${name}, phone: ${phonesArr[index]}`));
+}
+
+printContactsInfo(
+  'Jacob,William,Solomon,Artemis',
+  '89001234567,89001112233,890055566377,890055566300'
+);
+
 // Example 6 - Поиск наибольшего элемента
 // Напиши функцию findLargestNumber(numbers)которая ищет самое большое число в массиве.
 
-// function findLargestNumber(numbers) {}
+function findLargestNumber(numbers) {
+  return Math.max(...numbers);
+}
 
-// console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
-// console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
+console.log(findLargestNumber([2, 17, 94, 1, 23, 37])); // 94
+console.log(findLargestNumber([49, 4, 7, 83, 12])); // 83
+
 // Example 7 - Среднее значение
-// Напишите функцию calAverage() которая принимает произвольное кол-во аргументов и возвращает их среднее значение. Все аругменты будут только числами.
+// Напишите функцию calAverage() которая принимает произвольное кол-во аргументов и возвращает
+// их среднее значение.Все аругменты будут только числами.
 
-// function calAverage() {}
+function calAverage(...args) {
+  return args.reduce((total, value) => total + value, 0) / args.length;
+}
 
-// console.log(calAverage(1, 2, 3, 4)); // 2.5
-// console.log(calAverage(14, 8, 2)); // 8
-// console.log(calAverage(27, 43, 2, 8, 36)); // 23.2
+console.log(calAverage(1, 2, 3, 4)); // 2.5
+console.log(calAverage(14, 8, 2)); // 8
+console.log(calAverage(27, 43, 2, 8, 36)); // 23.2
+
 // Example 8 - Форматирование времени
-// Напиши функцию formatTime(minutes) которая переведёт значение minutes (количество минут) в строку в формате часов и минут HH:MM.
+// Напиши функцию formatTime(minutes) которая переведёт значение minutes (количество минут) в
+// строку в формате часов и минут HH: MM.
 
 // const hours = Math.floor(totalMinutes / 60);
 // const minutes = totalMinutes % 60;
@@ -85,26 +108,47 @@ console.log(getRectArea('8 11'));
 // const doubleDigitMinutes = String(minutes).padStart(2, 0);
 // console.log(`${doubleDigitHours}:${doubleDigitMinutes}`);
 
-// function formatTime(minutes) {}
+function formatTime(minutes) {
+  return `${String(Math.floor(minutes / 60)).padStart(2, 0)}:${String(minutes % 60).padStart(
+    2,
+    0
+  )}`;
+}
 
-// console.log(formatTime(70)); // "01:10"
-// console.log(formatTime(450)); // "07:30"
-// console.log(formatTime(1441)); // "24:01"
+console.log(formatTime(70)); // "01:10"
+console.log(formatTime(450)); // "07:30"
+console.log(formatTime(1441)); // "24:01"
+
 // Example 9 - Коллекция курсов (includes, indexOf, push и т. д.)
 // Напишите функции для работы с коллекцией обучающих курсов courses:
 
 // addCourse(name) - добавляет курс в конец коллекции
 // removeCourse(name) - удаляет курс из коллекции
 // updateCourse(oldName, newName) - изменяет имя на новое
-// const courses = ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL'];
 
-// addCourse('Express');
-// console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL', 'Express']
-// addCourse('CSS'); // 'У вас уже есть такой курс'
+const courses = ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL'];
 
-// removeCourse('React');
-// console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'Express']
-// removeCourse('Vue'); // 'Курс с таким имененем не найден'
+function addCourse(name) {
+  if (courses.includes(name)) console.log('You already have this course');
+  else courses.push(name);
+}
 
-// updateCourse('Express', 'NestJS');
-// console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'NestJS']
+function removeCourse(name) {
+  if (courses.includes(name)) courses.splice(courses.indexOf(name), 1);
+  else console.log('Course not found');
+}
+
+function updateCourse(oldName, newName) {
+  courses[courses.indexOf(oldName)] = newName;
+}
+
+addCourse('Express');
+console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL', 'Express']
+addCourse('CSS'); // 'У вас уже есть такой курс'
+
+removeCourse('React');
+console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'Express']
+removeCourse('Vue'); // 'Курс с таким имененем не найден'
+
+updateCourse('Express', 'NestJS');
+console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'NestJS']
