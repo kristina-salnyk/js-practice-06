@@ -1,1 +1,1 @@
-# js-tasks
+# JS Practice

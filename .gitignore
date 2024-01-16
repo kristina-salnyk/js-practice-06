@@ -104,3 +104,6 @@ dist
 .tern-port
 .prettierrc.json
 .vscode/settings.json
+
+#IDE
+.idea/
